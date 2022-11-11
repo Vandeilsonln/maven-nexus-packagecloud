@@ -11,7 +11,7 @@
 
   <groupId>com.vandeilson</groupId>
   <artifactId>exception</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.2-SNAPSHOT</version>
 
   <name>demo</name>
   <description>Demo project for Spring Boot</description>
