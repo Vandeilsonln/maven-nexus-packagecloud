@@ -11,7 +11,7 @@
 
   <groupId>com.vandeilson</groupId>
   <artifactId>exception</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0</version>
 
   <name>demo</name>
   <description>Demo project for Spring Boot</description>
@@ -76,5 +76,16 @@
       </plugin>
     </plugins>
   </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>nexus-snapshot</id>
+      <url>http://localhost:8081/repository/nexus-snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>nexus-release</id>
+      <url>http://localhost:8081/repository/nexus-releases/</url>
+    </repository>
+  </distributionManagement>
 
 </project>
