@@ -102,6 +102,9 @@
 
     <profile>
       <id>package-cloud</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <distributionManagement>
         <snapshotRepository>
           <id>packagecloud.snapshot</id>
