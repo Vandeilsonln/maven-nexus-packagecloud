@@ -105,11 +105,11 @@
       <distributionManagement>
         <snapshotRepository>
           <id>packagecloud.snapshot</id>
-          <url>https://packagecloud.io/vandernobrel/snapshot</url>
+          <url>packagecloud+https://packagecloud.io/vandernobrel/snapshot</url>
         </snapshotRepository>
         <repository>
           <id>packagecloud.release</id>
-          <url>https://packagecloud.io/vandernobrel/release</url>
+          <url>packagecloud+https://packagecloud.io/vandernobrel/release</url>
         </repository>
       </distributionManagement>
     </profile>
