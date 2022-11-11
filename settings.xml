@@ -3,12 +3,20 @@
         <server>
             <id>nexus-snapshot</id>
             <username>admin</username>
-            <password>admin123</password>
+            <password>${env.NEXUS_PASSWORD}</password>
         </server>
         <server>
             <id>nexus-release</id>
             <username>admin</username>
-            <password>admin123</password>
+            <password>${env.NEXUS_PASSWORD}</password>
+        </server>
+        <server>
+            <id>packagecloud.release</id>
+            <password>${env.PACKAGECLOUD_PASSWORD}</password>
+        </server>
+        <server>
+            <id>packagecloud.snapshot</id>
+            <password>${env.PACKAGECLOUD_PASSWORD}</password>
         </server>
     </servers>
 </settings>
