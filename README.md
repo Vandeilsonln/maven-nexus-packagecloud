@@ -17,7 +17,7 @@
 # 1 - Deploying to Nexus
 ### 1.1 - Setting up the repositories on Nexus
 
-Open the terminal and run `docker-compose up -d` to start the local nexus container.<br>
+After cloning this project, open the terminal and run `docker-compose up -d` to start the local nexus container.<br>
 Then, run `./retrieveInitialPassword.sh` to get the random password Nexus generated in order to be able to log in.
 (it will be printed on the terminal, just copy it)<br>
 <br>
