@@ -217,7 +217,7 @@ You can use the flag `-P` to do this, like the following:<br>
 
 ---
 ### 3.3 - Setting a profile as Active
-If you don't want to write the profile everytime you run a command, write the following to make one profile always active.<br>
+If you don't want to write the profile everytime you run a command, write the following under the `profile` tag to make one profile always active.<br>
 ```xml
 <profile>
       <id>package-cloud</id>
@@ -231,3 +231,37 @@ If you don't want to write the profile everytime you run a command, write the fo
 ```
 By doing this, when you run `mvn clean deploy -s ./settings.xml`, the project will get the server info from your default profile.
 <br>**So, you only have to write the profile when you desire to deploy into a different server!**
+
+---
+# 4 - Using your lib in other projects
+
+First of all, go to your local maven repository (under the `.m2` folder) and delete your lib (just for academics purposes).
+We're doing this because whn we deploy a component, maven install it first in our local maven repository, and we're trying to simulate
+a scenario where you are trying to import a lib that you normally don't have installed it in your computer.
+<br>Just keep in mind that maven will try to get your dependencies from your local maven repository before
+looking it in the servers you have configured.
+---
+Secondly, under the main `project` tag, copy this into your `pom.xml`:
+```xml
+<repositories>
+    <repository>
+        <id>nexus.snapshot</id>
+        <url>http://localhost:8081/repository/nexus-snapshots/</url>
+    </repository>
+    <repository>
+        <id>nexus.release</id>
+        <url>http://localhost:8081/repository/nexus-releases/</url>
+    </repository>
+</repositories>
+```
+
+And for the last step, go to the `dependencies` tag, put your libs coordinates and import it.
+```xml
+<dependency>
+    <groupId>com.vandeilson</groupId>
+    <artifactId>exception</artifactId>
+    <version>0.2.2-SNAPSHOT</version>
+</dependency>
+```
+
+Make sure you have the servers configured properly on your computer, or create a `settings.xml` file with the servers on it.

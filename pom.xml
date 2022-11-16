@@ -11,7 +11,7 @@
 
   <groupId>com.vandeilson</groupId>
   <artifactId>exception</artifactId>
-  <version>0.2.2-SNAPSHOT</version>
+  <version>0.4.9-SNAPSHOT</version>
 
   <name>demo</name>
   <description>Demo project for Spring Boot</description>
@@ -88,6 +88,9 @@
   <profiles>
     <profile>
       <id>local-nexus</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <distributionManagement>
         <snapshotRepository>
           <id>nexus.snapshot</id>
@@ -102,9 +105,6 @@
 
     <profile>
       <id>package-cloud</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <distributionManagement>
         <snapshotRepository>
           <id>packagecloud.snapshot</id>
