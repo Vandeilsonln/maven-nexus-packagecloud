@@ -28,16 +28,16 @@ Click on the gear on the left upper corner -> repository -> create repository:
 
 ![creating repository in Nexus](./images/nexus-create-repository.png)
 <br><br>
-Choose `maven2(hosted)` recipe, pick a name for your **snapshot repo** and make sure to change the `Version Policy` from `release` to `snapshot` (I chose `nexus-snapshots` for this project)
+##### Choose `maven2(hosted)` recipe, pick a name for your **snapshot repo** and make sure to change the `Version Policy` from `release` to `snapshot` (I chose `nexus-snapshots` for this project)
 <br>
-![define repository name](./images/define-repository-name.png)
-<br>
-**Create another repository, but with the version policy set to `Release` (I called it `nexus-releases`)**
+
+![define repository name](./images/define-repository-name.png)<br>
+Create another repository, but with the version policy set to `Release` (I called it `nexus-releases`)
 ---
 
 ### 1.2 - Config Nexus server on settings.xml
-Now that you have two repositories created (a snapshot one and release one), open the `settings.xml` file
-*(you can make these changes on your local settings.xml file, or you can use the one that already exists is the project)*
+Now that you have two repositories created (a snapshot one and a release one), open the `settings.xml` file
+*(you can make these changes on your local settings.xml file, or you can use the one that already exists in the project)*
 and write the following:
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.1.0">
@@ -82,7 +82,7 @@ can be found here:
 
 ### 1.4 - Deploy to Nexus
 before deloying it to Nexus, pay attention on your project version on `pom.xml`: **if it has `SNAPSHOT` in the version, it
-will be deployed to the SNAPSHOT repository. If not, it will be deployed to the release repo**.
+will be deployed to the SNAPSHOT repository, otherwise it will be deployed to the release repo**.
 ```xml
 <groupId>com.vandeilson</groupId>
 <artifactId>exception</artifactId>
@@ -99,7 +99,7 @@ You can then browse on your repos to make sure the project is there:
 # 2 - Deploying to Package Cloud
 ### 2.1 - Setting up the repositories on Package Cloud
 
-Firstly, go to `https://packagecloud.io/` and create a free account. Once your logged in, click on `create repository` on the main page (it's a big blue button hehe)
+Firstly, go to `https://packagecloud.io/` and create a free account. Once your logged in, click on `create repository` on the main page
 and create two repositories: `snapshot` and `release`.
 ![package cloud home page](./images/pc-home.png)
 
@@ -156,9 +156,10 @@ You can then browse on your repos to make sure the project is there:
 
 ---
 # 3 - Using profiles to deploy to multiple servers
-Ok, we have learned how to deploy our project into 2 different servers. But the thing is: we have to
+Ok, we have learned how to deploy our project into 2 different servers. But the thing is: we might want to
 deploy either into one server or another. <br>
-The solution is to work with profiles: We will create one profile for each server!<br>
+In this case the solution is to work with profiles: We will create one profile for each server!<br>
+
 ---
 
 ### 3.1 - Creating your profiles in pom.xml
@@ -229,10 +230,11 @@ If you don't want to write the profile everytime you run a command, write the fo
 ...
 
 ```
-By doing this, when you run `mvn clean deploy -s ./settings.xml`, the project will get the server info from your default profile.
+By doing this, when you run `mvn clean deploy -s ./settings.xml`, the project will get the server info from your default active profile.
 <br>**So, you only have to write the profile when you desire to deploy into a different server!**
 
 ---
+
 # 4 - Using your lib in other projects
 
 First of all, go to your local maven repository (under the `.m2` folder) and delete your lib (just for academics purposes).
@@ -240,6 +242,7 @@ We're doing this because whn we deploy a component, maven install it first in ou
 a scenario where you are trying to import a lib that you normally don't have installed it in your computer.
 <br>Just keep in mind that maven will try to get your dependencies from your local maven repository before
 looking it in the servers you have configured.
+
 ---
 Secondly, under the main `project` tag, copy this into your `pom.xml`:
 ```xml
